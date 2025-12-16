@@ -22,6 +22,7 @@
 #include "usart.h"
 #include "usb_host.h"
 #include "gpio.h"
+#include "fsmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -94,6 +95,7 @@ int main(void)
   MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_USB_HOST_Init();
+  MX_FSMC_Init();
   /* USER CODE BEGIN 2 */
   SysManager_Init();
   /* USER CODE END 2 */

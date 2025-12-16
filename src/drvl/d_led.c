@@ -18,8 +18,8 @@
  */
 void LED_ON(LED_Color_te color)
 {
-    if(color == RED) HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_RESET);
-    else if(color == GREEN) HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+    if(color == LED_RED) HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_RESET);
+    else if(color == LED_GREEN) HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 }
 
 /**
@@ -28,8 +28,8 @@ void LED_ON(LED_Color_te color)
  */
 void LED_OFF(LED_Color_te color)
 {
-    if(color == RED) HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_SET);
-    else if(color == GREEN) HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+    if(color == LED_RED) HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_SET);
+    else if(color == LED_GREEN) HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 }
 
 // ! ========================= 私 有 函 数 实 现 ========================= ! //

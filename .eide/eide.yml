@@ -71,6 +71,8 @@ targets:
             $toolName: auto
             output-format: elf
             remove-unused-input-sections: true
+            use-float-printf: true
+            use-float-scanf: true
         scatterFilePath: STM32F407ZGTX_FLASH.ld
         storageLayout:
           RAM: []

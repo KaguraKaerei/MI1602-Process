@@ -8,6 +8,7 @@
 // 驱动层头文件
 #include "d_led.h"
 #include "d_thermal_image.h"
+#include "d_lcd.h"
 // 服务层头文件
 #include "s_LOG.hpp"
 #include "s_DefineTools.h"
@@ -28,15 +29,15 @@
 static inline void SysManager_Init(void)
 {
     /* ===== 驱动层初始化部分 ===== */
-
+    lcd_init();
     /* ===== 服务层初始化部分 ===== */
 
     /* ===== 应用层初始化部分 ===== */
 
     /* ===== 轮询前执行部分 ===== */
 
-    LED_OFF(GREEN);
-    LED_OFF(RED);
+    LED_OFF(LED_GREEN);
+    LED_OFF(LED_RED);
     HAL_Delay(500);
 }
 
@@ -53,25 +54,25 @@ static inline void SysManager_Process(void)
     /* ===== 周期运行部分 ===== */
 
     // 40ms -- 25帧处理热成像图像数据
-    PERIODIC_TASK(40, {
-        IrTriggerOneFrame();
-    });
+    // PERIODIC_TASK(40, {
+        
+    // });
 
-    PERIODIC_TASK(1000, {
-        printf("原始数据: ");
-        for(uint32_t i = 0; i < 64; i++){
-            printf("%02X ", ir_raw_buf[i]);
-        }
-        printf("\r\n");
-    });
+    // PERIODIC_TASK(200, {
+        
+    // });
 
     /* ===== 事件驱动部分 ===== */
 
-    if(ir_acquire_state == 2)
-        LED_ON(RED);
-    else
-        LED_OFF(RED);
-
+    // 连续触发热成像图像采集
+    if(ir_acquire_state == 0){
+        IrTriggerOneFrame();
+    }
+    
+    // 绘制热成像图像到LCD
+    if(ir_draw_ready == 1){
+        IrDrawFrameToLCD();
+    }
 }
 
 #endif
